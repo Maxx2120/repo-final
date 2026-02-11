@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - NOVA AI{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="sidebar">
+        <button class="nav-btn active" onclick="showSection('chat')">Chat AI</button>
+        <button class="nav-btn" onclick="showSection('image')">Image Gen</button>
+        <button class="nav-btn" onclick="showSection('video')">Video Edit</button>
+        <button class="nav-btn logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="content-area">
+        <!-- Chat Section -->
+        <div id="chat-section" class="section active">
+            <h2>Chat AI (Ollama)</h2>
+            <div class="chat-window" id="chat-window">
+                <!-- Chat messages go here -->
+            </div>
+            <div class="chat-input-area">
+                <select id="chat-model">
+                    <option value="tinyllama">TinyLlama</option>
+                    <option value="mistral">Mistral</option>
+                </select>
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+
+        <!-- Image Section -->
+        <div id="image-section" class="section">
+            <h2>Image Generation (Stable Diffusion)</h2>
+            <div class="image-input-area">
+                <input type="text" id="image-prompt" placeholder="Enter image prompt...">
+                <button onclick="generateImage()" class="btn btn-primary">Generate</button>
+            </div>
+            <div id="image-loader" class="loader hidden">Generating image... This may take a while.</div>
+            <div id="image-result" class="result-area">
+                <!-- Generated image goes here -->
+            </div>
+            <h3>History</h3>
+            <div id="image-history" class="history-grid"></div>
+        </div>
+
+        <!-- Video Section -->
+        <div id="video-section" class="section">
+            <h2>Video Editor (FFmpeg)</h2>
+            <div class="video-input-area">
+                <input type="file" id="video-file" accept="video/*">
+                <input type="text" id="video-prompt" placeholder="Enter command (e.g., 'make vintage', 'slow motion')...">
+                <button onclick="processVideo()" class="btn btn-primary">Process</button>
+            </div>
+            <div id="video-loader" class="loader hidden">Processing video... Please wait.</div>
+            <div id="video-result" class="result-area">
+                <!-- Processed video goes here -->
+            </div>
+            <h3>History</h3>
+            <div id="video-history" class="history-list"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

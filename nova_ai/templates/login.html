@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Login - NOVA AI{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+<div class="auth-container">
+    <h2>Login</h2>
+    <form id="login-form">
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div class="auth-links">
+        <a href="/signup">Create Account</a>
+        <a href="/forgot-password">Forgot Password?</a>
+    </div>
+</div>
+</div>
+{% endblock %}
